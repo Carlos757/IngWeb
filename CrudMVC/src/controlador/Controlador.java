@@ -49,8 +49,10 @@ public class Controlador implements ActionListener{
         }
         if(e.getSource()==Vista.btnBorrar){
             String Rfc = Vista.getRfc();
-            int codigo = Modelo.borrar(Rfc);
-            Vista.notifica(codigo);
+            if(Rfc != ""){
+                int codigo = Modelo.borrar(Rfc);
+                Vista.notifica(codigo);
+             }
         }
         if(e.getSource()==Vista.btnModificar){
             String Rfc = Vista.getRfc();
