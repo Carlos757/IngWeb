@@ -12,9 +12,7 @@ public class Controlador implements ActionListener{
 
     private Modelo Modelo;
     private VentanaPrincipal Vista;
-    Cliente usuario = new Cliente();
-    
-    
+        
     public Controlador(VentanaPrincipal Vista,Modelo Modelo){
         this.Vista=Vista;
         this.Modelo=Modelo;

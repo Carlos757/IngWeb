@@ -9,16 +9,16 @@ import java.util.ArrayList;
 
 public class Modelo {
     
-    ConsultasBD BD;
+    ConsultasCliente BD;
     public Modelo(){
-        this.BD = new ConsultasBD();
+        this.BD = new ConsultasCliente();
     }
     
     public Cliente recuperar(String rfc){
         return BD.getCliente(rfc);
     }
     public int grabar(String rfc, String nombre, int edad, int idCiudad){
-        int codigo = BD.setCliente(rfc, nombre, edad, idCiudad);
+        int codigo = BD.setCliente(new Cliente(rfc,nombre,edad,idCiudad));
         return codigo;
     }
     public int borrar(String rfc){
@@ -26,7 +26,7 @@ public class Modelo {
         return codigo;
     }
     public int modificar(String rfc, String nombre, int edad, int idCiudad){
-        int codigo = BD.modificaCliente(rfc, nombre, edad, idCiudad);
+        int codigo = BD.modificaCliente(new Cliente(rfc,nombre,edad,idCiudad));
         return codigo;
     }
     

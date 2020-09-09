@@ -85,7 +85,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             int ciudad = Integer.parseInt(txtIdCiudad.getText());
             if(ciudad < 0){
                 notifica(4);
-                return 1;
+                return (-1);
             }else{
                 return ciudad;   
             }
