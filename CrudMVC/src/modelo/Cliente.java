@@ -14,8 +14,11 @@ public class Cliente {
         this.idCiudad = idCiudad;
     }
 
+    public Cliente(String rfc) {
+        this.rfc = rfc;
+    }
     public Cliente() {
-        
+       //
     }
 
     public String getRfc() {
