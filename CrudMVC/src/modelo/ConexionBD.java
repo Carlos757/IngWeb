@@ -9,8 +9,8 @@ public class ConexionBD {
     Connection conexion;
     
     public Connection conectar(){
-        //String url = "jdbc:mysql://localhost:3306/crud_mvc";
-        String url = "jdbc:mysql://192.168.64.2:3306/crud_mvc";
+        String url = "jdbc:mysql://localhost:3306/crud_mvc";
+        //String url = "jdbc:mysql://192.168.64.2:3306/crud_mvc";
         String usuario = "root";
         String contraseña = "";
         try{

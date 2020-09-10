@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class ConsultasCliente {
@@ -15,7 +18,7 @@ public class ConsultasCliente {
         this.con = new ConexionBD();
     }
     
-    public Cliente getCliente(String rfc){          
+    public Cliente obtenerCliente(String rfc){          
         Cliente c = new Cliente();
         try{
             String sql = "select * from clientes where rfc=?";
@@ -35,11 +38,12 @@ public class ConsultasCliente {
         }
         catch(SQLException ex){
             System.out.println(ex);
+            con.desconectar();
         }
         return c;
     }
 
-    public int setCliente(Cliente c) {
+    public int grabarCliente(Cliente c) {
         try{
             String sql = "insert into clientes values (?,?,?,?)";
             PreparedStatement ps = con.conectar().prepareStatement(sql);
@@ -98,8 +102,6 @@ public class ConsultasCliente {
             ps.close();
             con.desconectar();
             
-
-            
             if(res==1)
                 return 0;
             else 
@@ -109,5 +111,31 @@ public class ConsultasCliente {
             System.out.println(ex);
             return 1;
         }
+    }
+    
+    public ArrayList<Cliente> obtenerClientes(){
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        String sql = "select * from clientes";
+        try {
+            PreparedStatement ps = con.conectar().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next() ){ 
+                Cliente c = new Cliente();
+                c.setRfc(rs.getString("rfc"));
+                c.setNombre(rs.getString("nombre"));
+                c.setEdad(rs.getInt("edad"));
+                c.setIdCiudad(rs.getInt("idCiudad"));
+                clientes.add(c);
+            }
+            
+            ps.close();
+            con.desconectar();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultasCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return clientes;
     }
 }

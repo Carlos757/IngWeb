@@ -68,7 +68,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             int edad = Integer.parseInt(txtEdad.getText());
             if(edad>150 || edad <= 0){
                 notifica(3);
-                return 1;
+                return (-1);
             }else{
                 return edad;   
             }
@@ -76,7 +76,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }catch(Exception e){
             System.out.println(e);
             notifica(3);
-            return 1;
+            return (-1);
         }
     }
 
@@ -122,6 +122,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if(codigo == 7){
             JOptionPane.showMessageDialog(this, "Verifique el Nombre", "Aviso",JOptionPane.WARNING_MESSAGE);
         }
+    }
+    public int confirma(){
+         return JOptionPane.showConfirmDialog(this, "Esta seguro(a)?","Confirmar",JOptionPane.YES_NO_OPTION);  
     }
     
     

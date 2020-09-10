@@ -4,14 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelo.Modelo;
 import modelo.Cliente;
 import vista.VentanaPrincipal;
+import vista.VentanaUsuarios;
 
 public class Controlador implements ActionListener{
 
     private Modelo Modelo;
     private VentanaPrincipal Vista;
+    private VentanaUsuarios VistaUsuarios;
         
     public Controlador(VentanaPrincipal Vista,Modelo Modelo){
         this.Vista=Vista;
@@ -25,11 +29,13 @@ public class Controlador implements ActionListener{
             String Nombre = Vista.getNombre();
             int Edad = Vista.getEdad();
             int IdCiudad = Vista.getIdCiudad();
-            if(Rfc == "" || Nombre == "" || Edad==1 || IdCiudad == (-1)){
+            if(Rfc == "" || Nombre == "" || Edad==(-1) || IdCiudad == (-1)){
                 //Se verifica que ningun campo este incorrecto
-            }else{
-                int codigo = Modelo.grabar(Rfc,Nombre,Edad,IdCiudad);
-                Vista.notifica(codigo);
+            }else {
+                if(Vista.confirma()==0){
+                    int codigo = Modelo.grabar(Rfc,Nombre,Edad,IdCiudad);
+                    Vista.notifica(codigo);
+                }  
             }
         }
         if(e.getSource()==Vista.btnRecuperar){
@@ -43,14 +49,14 @@ public class Controlador implements ActionListener{
                 }else{                              //Si no significa que no obtuvo ningun resultado en el Query
                     Vista.notifica(2);
                 }
-            }else{System.out.println("No se hizo la consulta");}
+            }
         }
         if(e.getSource()==Vista.btnBorrar){
             String Rfc = Vista.getRfc();
-            if(Rfc != ""){
+            if(Rfc != "" && Vista.confirma()==0){
                 int codigo = Modelo.borrar(Rfc);
                 Vista.notifica(codigo);
-             }
+            }
         }
         if(e.getSource()==Vista.btnModificar){
             String Rfc = Vista.getRfc();
@@ -61,9 +67,16 @@ public class Controlador implements ActionListener{
             if(Rfc == "" || Nombre == "" || Edad==1 || IdCiudad == (-1)){
                 //Se verifica que ningun campo este incorrecto
             }else{
-                int codigo = Modelo.modificar(Rfc,Nombre,Edad,IdCiudad);
-                Vista.notifica(codigo);
+                if(Vista.confirma()==0){
+                    int codigo = Modelo.modificar(Rfc,Nombre,Edad,IdCiudad);
+                    Vista.notifica(codigo);
+                }
             }
+        }
+        if(e.getSource()==Vista.btnConsularClientes){
+            VistaUsuarios = new VentanaUsuarios();
+            VistaUsuarios.arranca();
+            VistaUsuarios.mostrarClientes(Modelo.recuperarClientes());
         }
         
     }

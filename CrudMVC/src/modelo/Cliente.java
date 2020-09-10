@@ -2,10 +2,10 @@
 package modelo;
 
 public class Cliente {
-    String rfc;
-    String nombre;
-    int edad;
-    int idCiudad;
+    private String rfc;
+    private String nombre;
+    private int edad;
+    private int idCiudad;
 
     public Cliente(String rfc, String nombre, int edad, int idCiudad) {
         this.rfc = rfc;

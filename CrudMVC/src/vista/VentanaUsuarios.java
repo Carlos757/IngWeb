@@ -1,9 +1,34 @@
 package vista;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
+
 public class VentanaUsuarios extends javax.swing.JFrame {
 
+    private DefaultTableModel mod;
+    
     public VentanaUsuarios() {
         initComponents();
+    }
+    public void arranca(){
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.mod = new DefaultTableModel();
+    }
+    
+    public void mostrarClientes(ArrayList<Cliente> clientes){
+        mod =(DefaultTableModel)tablaUsuarios.getModel();
+        Object[] ob = new Object[4];
+        for(Cliente u: clientes){           
+            ob[0] = u.getRfc();
+            ob[1] = u.getNombre();
+            ob[2] = u.getEdad();
+            ob[3] = u.getIdCiudad();
+            mod.addRow(ob);
+        }
+        tablaUsuarios.setModel(mod);
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -11,22 +36,28 @@ public class VentanaUsuarios extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaUsuarios = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Usuarios");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "RFC", "Nombre", "Edad", "IdCiudad"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaUsuarios);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,6 +99,7 @@ public class VentanaUsuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable tablaUsuarios;
     // End of variables declaration//GEN-END:variables
+
 }
