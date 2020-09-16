@@ -10,22 +10,22 @@ public class VentanaUsuarios extends javax.swing.JFrame {
     
     public VentanaUsuarios() {
         initComponents();
+        this.mod = new DefaultTableModel();
     }
     public void arranca(){
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.mod = new DefaultTableModel();
+        this.setResizable(false);      
     }
     
     public void mostrarClientes(ArrayList<Cliente> clientes){
         mod =(DefaultTableModel)tablaUsuarios.getModel();
         Object[] ob = new Object[4];
-        for(Cliente u: clientes){           
-            ob[0] = u.getRfc();
-            ob[1] = u.getNombre();
-            ob[2] = u.getEdad();
-            ob[3] = u.getIdCiudad();
+        for(Cliente c: clientes){           
+            ob[0] = c.getRfc();
+            ob[1] = c.getNombre();
+            ob[2] = c.getEdad();
+            ob[3] = c.getIdCiudad();
             mod.addRow(ob);
         }
         tablaUsuarios.setModel(mod);

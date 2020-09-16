@@ -42,7 +42,7 @@ public class Controlador implements ActionListener{
             String rfc = Vista.getRfc(); 
             if(rfc != ""){
                 Cliente c = Modelo.recuperar(rfc);
-                if(c.getEdad() != 0){               //Se verifica que algun atributo tenga valores
+                if(c.getEdad() != 0){               //Se verifica que el cliente no este vacio
                     Vista.setNombre(c.getNombre());
                     Vista.setEdad(c.getEdad());
                     Vista.setIdCiudad(c.getIdCiudad());
@@ -74,6 +74,9 @@ public class Controlador implements ActionListener{
             }
         }
         if(e.getSource()==Vista.btnConsularClientes){
+            if (VistaUsuarios != null) {//si existe una ventana, la cierra.
+                VistaUsuarios.dispose();
+            }
             VistaUsuarios = new VentanaUsuarios();
             VistaUsuarios.arranca();
             VistaUsuarios.mostrarClientes(Modelo.recuperarClientes());

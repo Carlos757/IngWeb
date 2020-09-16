@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/Users/Carlo/Documents/NetBeansProjects/IngWeb/CrudMVC/src/modelo/ConsultasCliente.java</file>
             <file>file:/C:/Users/Carlo/Documents/NetBeansProjects/IngWeb/CrudMVC/src/vista/VentanaUsuarios.java</file>
+            <file>file:/C:/Users/Carlo/Documents/NetBeansProjects/IngWeb/CrudMVC/src/modelo/ConexionBD.java</file>
             <file>file:/C:/Users/Carlo/Documents/NetBeansProjects/IngWeb/CrudMVC/src/modelo/Modelo.java</file>
             <file>file:/C:/Users/Carlo/Documents/NetBeansProjects/IngWeb/CrudMVC/src/controlador/Controlador.java</file>
             <file>file:/C:/Users/Carlo/Documents/NetBeansProjects/IngWeb/CrudMVC/src/Principal.java</file>
             <file>file:/C:/Users/Carlo/Documents/NetBeansProjects/IngWeb/CrudMVC/src/vista/VentanaPrincipal.java</file>
+            <file>file:/C:/Users/Carlo/Documents/NetBeansProjects/IngWeb/CrudMVC/src/modelo/Cliente.java</file>
         </group>
     </open-files>
 </project-private>

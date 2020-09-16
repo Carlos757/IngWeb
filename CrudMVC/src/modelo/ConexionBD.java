@@ -28,8 +28,7 @@ public class ConexionBD {
             conexion.close();
             System.out.println("Conexion cerrada");
         } catch (SQLException ex) {
-            System.out.println("Conexion no fue Cerrada");
-            
+            System.out.println("Conexion no fue Cerrada");           
         }
     }
     

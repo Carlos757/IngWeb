@@ -21,7 +21,7 @@ public class ConsultasCliente {
     public Cliente obtenerCliente(String rfc){          
         Cliente c = new Cliente();
         try{
-            String sql = "select * from clientes where rfc=?";
+            String sql = "{call sp_verifica_rfc(?)}";
             PreparedStatement ps = con.conectar().prepareStatement(sql);
             ps.setString(1, rfc);
             ResultSet rs = ps.executeQuery();
@@ -69,9 +69,10 @@ public class ConsultasCliente {
     }
 
     public int borraCliente(String rfc) {
-        String sql = "delete from clientes where rfc='"+rfc+"'";
+        String sql = "delete from clientes where rfc=?";
         try{
             PreparedStatement ps = con.conectar().prepareStatement(sql);
+            ps.setString(1, rfc);
             
             int res = ps.executeUpdate();
             ps.close();

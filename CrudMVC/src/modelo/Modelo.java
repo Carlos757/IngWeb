@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Modelo {
     
-    ConsultasCliente BD;
+    private ConsultasCliente BD;
     public Modelo(){
         this.BD = new ConsultasCliente();
     }
